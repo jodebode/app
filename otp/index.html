@@ -1,1 +1,675 @@
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>otp</title>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-app.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.4.2/firebase.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.1/firebase-database.js"></script>
+    <script>
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-app.js";
+        // import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.1.2/firebase-analytics.js";
+        // import { getApp} from "https://www.gstatic.com/firebasejs/9.1.2/firebase-database.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        // const firebaseConfig = {
+        //     apiKey: "AIzaSyDAXHPDz-3kyGAQLG6XcDvFf3Z8aM9_KBc",
+        //     authDomain: "otp0-a8636.firebaseapp.com",
+        //     projectId: "otp0-a8636",
+        //     storageBucket: "otp0-a8636.appspot.com",
+        //     messagingSenderId: "1046719116750",
+        //     appId: "1:1046719116750:web:7b23829e045da7e670679f",
+        //     measurementId: "G-GCG55WNWZX",
+        //     databaseURL: "https://otp0-a8636-default-rtdb.firebaseio.com/"
+        // };
+
+        // // Initialize Firebase
+        // // const app = initializeApp(firebaseConfig);
+        // // const analytics = getAnalytics(app);
+        // firebase.initializeApp(firebaseConfig);
+        // firebase.analytics();
+
+        // var ref = firebase.database().ref("user");
+
+        // const firebaseConfig = { apiKey: "AIzaSyDAXHPDz-3kyGAQLG6XcDvFf3Z8aM9_KBc", authDomain: "otp0-a8636.firebaseapp.com", projectId: "otp0-a8636", storageBucket: "otp0-a8636.appspot.com", messagingSenderId: "1046719116750", appId: "1:1046719116750:web:7b23829e045da7e670679f", measurementId: "G-GCG55WNWZX", databaseURL: "https://otp0-a8636-default-rtdb.firebaseio.com/" }; firebase.initializeApp(firebaseConfig); firebase.analytics(); var ref = firebase.database().ref("user");
+
+        //this is from encod text converted
+        // const firebaseConfig = { 
+        //     apiKey: "AIzaSyDAXHPDz-3kyGAQLG6XcDvFf3Z8aM9_KBc", 
+        //     authDomain: "otp0-a8636.firebaseapp.com", 
+        //     projectId: "otp0-a8636", 
+        //     storageBucket: "otp0-a8636.appspot.com", 
+        //     messagingSenderId: "1046719116750", 
+        //     appId: "1:1046719116750:web:7b23829e045da7e670679f", 
+        //     measurementId: "G-GCG55WNWZX", 
+        //     databaseURL: "https://otp0-a8636-default-rtdb.firebaseio.com/" 
+        // }; 
+        // firebase.initializeApp(firebaseConfig); 
+        // firebase.analytics(); 
+        // var otpRef = firebase.database();
+
+        // const firebaseConfig = { apiKey: "AIzaSyDAXHPDz-3kyGAQLG6XcDvFf3Z8aM9_KBc", authDomain: "otp0-a8636.firebaseapp.com", projectId: "otp0-a8636", storageBucket: "otp0-a8636.appspot.com", messagingSenderId: "1046719116750", appId: "1:1046719116750:web:7b23829e045da7e670679f", measurementId: "G-GCG55WNWZX", databaseURL: "https://otp0-a8636-default-rtdb.firebaseio.com/" }; 
+        // firebase.initializeApp(firebaseConfig); 
+        //firebase.analytics(); 
+
+        const firebaseConfig = { apiKey: "AIzaSyDAXHPDz-3kyGAQLG6XcDvFf3Z8aM9_KBc", authDomain: "otp0-a8636.firebaseapp.com", databaseURL: "https://otp0-a8636-default-rtdb.firebaseio.com", projectId: "otp0-a8636", storageBucket: "otp0-a8636.appspot.com", messagingSenderId: "1046719116750", appId: "1:1046719116750:web:7b23829e045da7e670679f", measurementId: "G-GCG55WNWZX" }; firebase.initializeApp(firebaseConfig); var otpDB = firebase.database();
+        var otpRef = firebase.database();
+
+        // ref.on('value', function(s){
+        //     s.forEach(function(childS){
+        //         var d = childS.val();
+        //         console.log(childS)
+        //     })
+        // })
+
+        // this is slow work
+
+        //     const dbRef = firebase.database().ref();
+        //         dbRef.child("otp").get().then((snapshot) => {
+        //             if (snapshot.exists()) {
+
+        //                 var data = snapshot.val();
+        //                  console.log(data)
+
+        //                  if(data['lll'] === null){
+        //                      console.log('nuuu')
+        //                  }
+        //             } else {
+        //                 console.log("No data available");
+        //             }
+        //         }).catch((error) => {
+        //            // console.error(error);
+        //         });
+
+        //         dbRef.get().then((s)=>{
+        //             console.log(s.val())
+        //         })
+        // ///
+
+        // //only string value get
+        // dbRef.child('01823543802').get().then(function(s){
+        //     console.log(s.val())
+        // })
+        var db = firebase.database()
+        otpDB.ref().on("value", function (s) {
+            // console.log(s.val())
+        })
+        
+
+
+
+
+    </script>
+</head>
+
+<body>
+
+
+
+    <div id="otpRoot">
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0px;
+                padding: 0px;
+            }
+
+            #otpRoot {
+                margin: 0px;
+                top: 0px;
+                position: fixed;
+                background: white;
+                width: 100vw;
+                height: 100vh;
+                z-index: 200;
+                overflow: auto;
+                display: block;
+            }
+
+            #tableBtn {
+                position: fixed;
+                margin: 0px;
+                position: fixed;
+                background: #d33d3d;
+                width: 50px;
+                height: 50px;
+                z-index: 50px;
+                text-align: center;
+                border-radius: 50%;
+                padding: 4px;
+                z-index: 130;
+                right: 10px;
+                bottom: 0px;
+                color: white;
+            }
+
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+                font-size: 11px;
+                margin-bottom: 100px;
+            }
+
+            table thead tr th {
+                /* Important */
+                background: brown;
+                position: sticky;
+                z-index: 100;
+                top: 0;
+                border-left: 1px solid #dddddd;
+                padding: 5px;
+                color: white;
+                text-align: left;
+            }
+
+            /* .otpHeader {
+                width: 100vw;
+                background: brown;
+                position: fixed;
+                display: table;
+                color: white;
+                border: 1px solid #dddddd;
+            } */
+
+            td {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 5px;
+                width: auto;
+
+
+            }
+
+
+            tr:nth-child(even) {
+                background-color: white;
+            }
+
+
+
+            #manualSendOtp {
+                position: fixed;
+                bottom: 0px;
+                display: flex;
+                justify-content: space-between;
+                width: 100vw;
+                background-color: brown;
+                padding: 3px 10px;
+
+            }
+
+            #manualSendOtp input {
+
+                padding: 5px;
+            }
+
+            #manualSendOtp button {
+                padding: 0px;
+                font: 12px;
+            }
+
+            #close {
+                margin-right: 20px;
+            }
+        </style>
+        <table id="otpTable">
+            <thead class="otpHeader">
+                <tr>
+                    <th>Phone</th>
+                    <th>Method</th>
+                    <th>Status</th>
+                    <th>Delivary</th>
+                    <th>Time</th>
+                    <th>Otp</th>
+                    <th>Account</th>
+                    <th>Device</th>
+                    <th>TimeOut</th>
+                    <th>IP Address </th>
+                    <th>De-Phone</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody id="otpTbody">
+
+                <tr>
+                    <td id="otpPhone" class="otpTd">01823542802</td>
+                    <td id="otpMthod" class="otpTd">register</td>
+                    <td id="otpStatus" class="otpTd">send</td>
+                    <td id="otpDelivary" class="otpTd">true</td>
+                    <td id="otpDelivaryTime" class="otpTd">7/18/21 05.18pm</td>
+                    <td id="otpOtp" class="otpTd">3058</td>
+                    <td id="otpResult" class="otpTd">active</td>
+                    <td id="otpDevice" class="otpTd">Redme-s2</td>
+                    <td id="otpTimeOut" class="otpTd">923887128472</td>
+                    <td id="otpIp" class="otpTd">127.2.168.0</td>
+                    <td id="otpDphone" class="otpTd">01869739959</td>
+                    <td id="otpLocation" class="otpTd">23:98234,86:39223</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <div id="01823542802"></div>
+        <div id="01823542803"></div>
+
+        <div id="del"></div>
+        <div id="manualSendOtp">
+            <input placeholder="Send Manually A OTP" id="in">
+            <button id="sendButton">SEND OTP</button>
+            <button id="close">Close</button>
+        </div>
+    </div>
+    <div id="tableBtn">Open</div>
+
+    <script type="text/javascript">
+        var firstTime = true;
+        function setView(allUsers, phoneNum) {
+
+            var tempArr = [];
+
+            for (var i = 0; i < phoneNum.length; i++) {
+                //console.log(phoneNum[i]) //019345325432453
+
+                var singleUser = phoneNum[i]
+                //if (allUsers[singleUser].status == '') {
+                //lo(allUsers[singleUser])
+
+                var otpObj = allUsers[singleUser]
+
+                var templte = `<tr>
+                                    <td id="otpPhone"  class="otpTd" >${otpObj.phone}</td>
+                                    <td id="otpMthod"  class="otpTd" >${otpObj.method}</td>
+                                    <td id="otpStatus"  class="otpTd" >${otpObj.status}</td>
+                                    <td id="otpDelivary"  class="otpTd" >${otpObj.delivary}</td>
+                                    <td id="otpDelivaryTime"  class="otpTd" >${otpObj.delivarytime}</td>
+                                    <td id="otpOtp"  class="otpTd" >${otpObj.otp}</td>
+                                    <td id="otpResult"  class="otpTd" >${otpObj.result}</td>
+                                    <td id="otpDevice" class="otpTd">${otpObj.device}</td>
+                                    <td id="otpTimeOut" class="otpTd">${otpObj.tOut}</td>
+                                    <td id="otpIp" class="otpTd">${otpObj.ip}</td>
+                                    <td id="otpDphone" class="otpTd">${otpObj.dphone}</td>
+                                    <td id="otpLocation" class="otpTd">${otpObj.location}</td>
+                                </tr>`
+
+                tempArr.push(templte)
+
+            }
+
+            if (firstTime) {
+                otpTbody.innerHTML = tempArr.join('')
+            } else {
+
+            }
+
+            setTimeout(function () {
+                var dataTable = document.querySelectorAll('#otpStatus')
+
+                for (var i = 0; i < dataTable.length; i++) {
+
+                    if (dataTable[i].textContent == 'sent') {
+                        changeValue('otpApp', '018600')
+                        // console.log(true)
+                    }
+                }
+
+            }, 3000)
+
+        }
+
+
+        // function setView(otpObj){
+
+        //     var otpTbody = document.getElementById('otpTbody');
+
+        //         var templte = `<tr>
+        //                 <td id="otpPhone"  class="otpTd" >${otpObj.phone}</td>
+        //                 <td id="otpMthod"  class="otpTd" >${otpObj.method}</td>
+        //                 <td id="otpStatus"  class="otpTd" >${otpObj.status}</td>
+        //                 <td id="otpDelivary"  class="otpTd" >${otpObj.delivary}</td>
+        //                 <td id="otpDelivaryTime"  class="otpTd" >${otpObj.delivarytime}</td>
+        //                 <td id="otpOtp"  class="otpTd" >${otpObj.otp}</td>
+        //                 <td id="otpResult"  class="otpTd" >${otpObj.result}</td>
+        //                 <td id="otpDevice" class="otpTd">${otpObj.device}</td>
+        //                 <td id="otpTimeOut" class="otpTd">${otpObj.out}</td>
+        //                 <td id="otpIp" class="otpTd">${otpObj.ip}</td>
+        //                 <td id="otpDphone" class="otpTd">${otpObj.dphone}</td>
+        //                 <td id="otpLocation" class="otpTd">${otpObj.location}</td>
+        //                 </tr>`
+        //         otpTbody.insertAdjacentHTML('afterbegin', templte);
+        //     }
+
+        //divide
+        document.getElementById('close').addEventListener('click', function () {
+            document.getElementById('otpRoot').style.display = 'none';
+
+        })
+        var randCode = () => {
+            var str = '';
+            for (var i = 0; i < 4; i++) {
+                var ran = Math.random() * 8 + 1;
+                var r = Math.floor(ran);
+                str = str + r;
+            }
+            return str;
+        }
+
+        var button = document.querySelector('#sendButton');
+        var code = '+88';
+        var mgs = 'Anidim OTP Code ' + randCode();
+
+        var m = ['01865061684', '01869739959', '01871098599', '01648329255']
+        button.addEventListener('click', () => {
+            var inp = document.querySelector('#in').value.toString();
+            var phone = code + inp
+            console.log(phone)
+            try {
+                //var mgs = 'Anidim OTP ' + randCode();
+
+                // for (var n = 0; n < 5; n++) {
+                //     (function (n) {
+                //         setTimeout(function () {
+                //             var mgs = 'Anidim OTP ' + randCode();
+                //             //SEND_OTP.otpSend(phone, mgs);
+                //             SEND_OTP.otpSend(m[n], mgs);
+
+                //             //console.log("ttt" + n)
+                //         }, 2000 * n)
+                //     })(n)
+
+                //}
+                SEND_OTP.otpSend(phone, mgs);
+            } catch (error) {
+
+            }
+        })
+
+        document.getElementById('tableBtn').addEventListener('click', function () {
+            document.getElementById('otpRoot').style.display = 'block';
+        })
+
+
+        var i = 5000
+        function reFresh() {
+            checkNew()
+        }
+
+        //var myTime = setInterval(reFresh, 3000);
+
+
+        function checkNew() {
+            console.log('load')
+        }
+        function closeREfresh() {
+            clearInterval(myTime)
+        }
+
+
+        // path otpApp
+        db.ref('otpApp').on('value', function (data) {
+            if (data.exists()) {
+                var allUsers = data.val()
+                var phoneNum = Object.keys(allUsers)
+
+
+                for (var i = 0; i < phoneNum.length; i++) {
+                    //console.log(phoneNum[i]) //019345325432453
+
+                    var singleUser = phoneNum[i]
+                    if (allUsers[singleUser].status == '') {
+                        //lo(allUsers[singleUser])
+                        //console.log(allUsers[singleUser])
+                        //  setView(allUsers[singleUser])
+                        //prepareOtp(allUsers[singleUser])
+
+                    }
+                }
+
+
+            } else {
+                console.log(null)
+            }
+        })
+
+        function loadData() {
+            // path otpApp
+            db.ref('otpApp').on('value', function (data) {
+                if (data.exists()) {
+                    var allUsers = data.val()
+                    var phoneNum = Object.keys(allUsers)
+                    setView(allUsers, phoneNum)
+                } else {
+                    console.log(null)
+                }
+            })
+        }
+        loadData()
+        function prepareOtp() {
+
+
+        }
+        function lo(t) {
+            console.log(t)
+        }
+        function changeValue(mainId, uid) {
+            db.ref(mainId + "/" + uid).update(
+                {
+                    delivary: true
+                }
+            )
+        }
+
+        //changeValue('otpApp', 'user3')
+        var otpobj = {
+            phone: '01860',
+            method: 'reg',
+            status: '',
+            delivary: false,
+            delivarytime: '09/10/21 04.38pm',
+            otp: '',
+            result: 'pending',
+            device: 'Samsung m31',
+            out: 254623928332,
+            ip: '127.01.168.0',
+            dphone: '01852832929, 01555687532',
+            location: '23:92342, 83:923423'
+
+        }
+
+        function setdata(mainChild, uid) {
+            firebase.database().ref(mainChild + '/' + uid).set(otpobj);
+        }
+
+        for (var n = 0; n < 10; n++) {
+            (function (n) {
+                setTimeout(function () {
+                    // setdata('otpApp', otpobj.phone + n)
+                    // console.log("ttt" + n)
+                }, 500 * n)
+            })(n)
+
+        }
+
+
+        function update2(id, uid) {
+            var B = Firebase
+            var ref = new B('https://otp0-a8636-default-rtdb.firebaseio.com/');
+            var userref = ref.child(id);
+
+            try {
+                userref.child(uid).update({
+                    ['ph']: 3322882
+                })
+
+            } catch (error) {
+                alert(error)
+            }
+
+        }
+
+        function timeOut(user) {
+            setTimeout(function () {
+                var root = 'otpApp';
+                var path = root + "/" + user;
+
+                otpDB.ref(path).on('value', function (data) {
+                    if (data.exists() && data.val().wait) {
+                        console.log(data.val())
+                        otpDB.ref(root + '/' + user).update({ 'out': true })
+                    } else {
+                        console.log(false)
+
+                    }
+                })
+            }, 1000 * 10)
+        }
+
+
+
+
+
+        var token = [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F',
+            'G',
+            'H',
+            'I',
+            'J',
+            'K',
+            'L',
+            'M',
+            'N',
+            'O',
+            'P',
+            'Q',
+            'R',
+            'S',
+            'T',
+            'U',
+            'V',
+            'W',
+            'X',
+            'Y',
+            'Z'
+        ]
+
+
+        function sendOptOne() {
+            var root = 'otpApp';
+            var path = root;
+
+            otpDB.ref(root).on('value', function (data) {
+                if (data.exists()) {
+                    //console.log(data.val())
+                    // firstly load users number
+                    var users = Object.keys(data.val())
+                    //console.log(users)
+                    for (var i = 0; i < users.length; i++) {
+
+                        // single user 
+                        var user = users[i]
+                        otpDB.ref(root + '/' + user).on('value', function (uObject) {
+
+                            //console.log(userObject.val())
+                            var userObject = uObject.val()
+                            if (userObject.result === 'pending' && userObject.wait && (userObject.otp === '')) {
+
+                                //console.log(userObject)
+                                
+                                
+                                otpDB.ref(root + '/' + user + '/otp').on('value', function (getOtp) {
+                                    console.log(getOtp.val())
+                                    
+                                    if(getOtp.val() === ''){
+
+                                        var code = '+88';
+                                        var mgs = randCode();
+                                        otpDB.ref(root + '/' + user).update({
+                                            'otp': mgs
+                                        })
+
+                                        try {
+                                            Android.otpSendonly(code + user, 'Anidim OTP ' + mgs);
+                                            Android.timeOutActivity(user)
+                                            location.reload();
+                                        } catch (error) {
+
+                                        }
+                                    }
+                                })
+                            } else {
+                                console.log('already send')
+                            }
+                        })
+                    }
+
+
+                } else {
+                    console.log(false)
+
+                }
+            })
+        }
+        
+        setTimeout(function(){
+            sendOptOne()
+        }, 2000)
+
+
+
+        var threeMinutes = 60 * 3;
+
+        var display = document.querySelector('#close');
+        //startTimer(threeMinutes, display);
+
+
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+
+            startTime = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                --timer;
+                // time out
+                if (timer == -1) {
+                    clearInterval(startTime)
+                }
+            }, 1000);
+        }
+
+        // Android.timeOutActivity('01823542802')
+        //update2('otp', 'amar2222222')
+    </script>
+
+</body>
+
+
+
+</html>

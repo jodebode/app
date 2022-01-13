@@ -35,6 +35,18 @@
             "oldprice": "65",
             "des": "",
             "stock": true
+        },
+        {
+            "title": "মিনিকেট চাল2",
+            "amount": "১ কেজি",
+            "price": "653",
+            "dropprice": 0,
+            "id": "chal-3",
+            "image": "মিনিকেট_চাল.webp",
+            "category": "featured",
+            "oldprice": "65",
+            "des": "",
+            "stock": true
         }
     ],
     "mudi": [
